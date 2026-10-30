@@ -1,0 +1,12 @@
+# Build output
+bin/
+obj/
+# Installer staging (dotnet publish) and the built installer — rebuild with installer\build-installer.ps1
+publish/
+dist/
+
+# IDE / user files
+.vs/
+.vscode/
+*.user
+*.suo

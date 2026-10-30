@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <!-- WPF and WinForms both define Application, Clipboard, etc.; keep usings explicit. -->
+    <ImplicitUsings>disable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <!-- WinForms is used only for the tray NotifyIcon. -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <!-- 64-bit only: Snagit 12 ran out of its 2 GB 32-bit address space on wide screens. -->
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- WFAC010 asks to move DPI settings out of the manifest; WPF needs them there, and WinForms is
+         aligned separately with Application.SetHighDpiMode(PerMonitorV2) at startup (see App.OnStartup). -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+    <AssemblyName>SnagitCraft</AssemblyName>
+    <RootNamespace>SnagitAnything</RootNamespace>
+    <Version>1.1.0</Version>
+    <Product>SnagitCraft</Product>
+    <AssemblyTitle>SnagitCraft</AssemblyTitle>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <!-- Installer staging / output live inside the project folder; keep them out of the build. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);publish\**;dist\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Logo: app.ico = exe icon (ApplicationIcon) + tray icon; logo.png = in-app logo (AppLogo).
+         Both are produced by installer\set-logo.ps1 from a source picture. -->
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\logo.png" />
+    <None Remove="Assets\logo-*.png" />
+  </ItemGroup>
+
+</Project>

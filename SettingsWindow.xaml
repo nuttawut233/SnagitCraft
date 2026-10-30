@@ -1,0 +1,53 @@
+<Window x:Class="SnagitAnything.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ตั้งค่า — SnagitCraft" Width="640" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource WindowBg}" FontFamily="Segoe UI" FontSize="13"
+        UseLayoutRounding="True">
+    <StackPanel Margin="22,18,22,16">
+        <TextBlock Text="ปุ่มลัดการจับภาพ" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TextMain}" />
+        <TextBlock Foreground="{StaticResource TextMuted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                   Text="กด &quot;ตั้งค่า…&quot; แล้วกดปุ่มที่ต้องการบนคีย์บอร์ด (ใช้ Ctrl / Alt / Shift / Win ร่วมได้ รวมถึง Print Screen) — Esc = ยกเลิก" />
+
+        <Border Background="{StaticResource PanelBg}" BorderBrush="{StaticResource Divider}" BorderThickness="1" CornerRadius="8" Padding="12,6">
+            <ItemsControl x:Name="Rows">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Margin="0,5">
+                            <Button DockPanel.Dock="Right" Style="{StaticResource FlatButton}" Content="ล้าง" Tag="{Binding}" Click="Clear_Click" />
+                            <Button DockPanel.Dock="Right" Style="{StaticResource FlatButton}" Content="ตั้งค่า…" Tag="{Binding}" Click="Record_Click" />
+                            <Border DockPanel.Dock="Right" Width="210" Height="28" Margin="8,0" CornerRadius="4" BorderThickness="1"
+                                    BorderBrush="{Binding Border}" Background="{Binding Background}">
+                                <TextBlock Text="{Binding Display}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Foreground="{Binding Foreground}" FontWeight="SemiBold" />
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}" Foreground="{StaticResource TextMain}" />
+                                <TextBlock Text="{Binding Description}" Foreground="{StaticResource TextMuted}" FontSize="11" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+        <DockPanel Margin="0,6,0,0">
+            <Button DockPanel.Dock="Right" Style="{StaticResource FlatButton}" Content="คืนค่าเริ่มต้น" Click="Defaults_Click" />
+            <TextBlock x:Name="Message" Foreground="#FFB3261E" VerticalAlignment="Center" TextWrapping="Wrap" />
+        </DockPanel>
+
+        <TextBlock Text="ทั่วไป" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TextMain}" Margin="0,16,0,8" />
+        <Border Background="{StaticResource PanelBg}" BorderBrush="{StaticResource Divider}" BorderThickness="1" CornerRadius="8" Padding="14,10">
+            <StackPanel>
+                <CheckBox x:Name="WidgetBox" Content="แสดงหน้าต่างจับภาพลอย (ปุ่มแดง + โปรไฟล์) บนจอเสมอ" Margin="0,2" />
+                <CheckBox x:Name="AutoHideBox" Content="ซ่อนชิดขอบจออัตโนมัติ — เลื่อนเมาส์เข้าใกล้แถบสีฟ้าเพื่อเปิด (ลากไปขอบ บน / ล่าง / ซ้าย / ขวา ได้)"
+                          Margin="22,6,0,2" IsEnabled="{Binding IsChecked, ElementName=WidgetBox}" />
+                <CheckBox x:Name="MinimizedBox" Content="เปิดโปรแกรมแบบย่อไว้ที่ถาดระบบ" Margin="0,6,0,2" />
+            </StackPanel>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Style="{StaticResource AccentButton}" Content="บันทึก" Width="96" Click="Save_Click" IsDefault="True" />
+            <Button Style="{StaticResource FlatButton}" Content="ยกเลิก" Width="80" Click="Cancel_Click" IsCancel="True" Margin="8,0,0,0" />
+        </StackPanel>
+    </StackPanel>
+</Window>

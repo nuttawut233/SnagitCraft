@@ -1,0 +1,5 @@
+<!-- The app logo as an image resource (key: AppLogo). Change it with installer\set-logo.ps1 -Source <picture>. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="AppLogo" UriSource="pack://application:,,,/Assets/logo.png" />
+</ResourceDictionary>
